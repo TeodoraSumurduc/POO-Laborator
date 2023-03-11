@@ -15,7 +15,7 @@ public:
         this->pret=prod.pret;
     }
     Produs(){
-        strcpy(denumire,NULL);
+        denumire=nullptr;
         pret=0;}
     /*Produs(char *Denumire=NULL,int Pret=0){
         if(Denumire!=NULL)
