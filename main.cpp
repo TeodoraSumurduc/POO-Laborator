@@ -74,7 +74,7 @@ ostream& operator<<(std::ostream &os , Produs &p)
         os<<"Not initialzed\n";
         return os;
     }
-    os<<"Produs: denumire: "<<p.denumire<<" pret: "<<p.pret<<"\n";
+    os<<"Produs: denumire: "<<p.getDenumire()<<" pret: "<<p.getPret()<<"\n";
     return os;
 }
 istream& operator>>(std::istream &is , Produs &p)
