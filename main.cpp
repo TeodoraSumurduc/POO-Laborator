@@ -20,6 +20,7 @@ public:
         {this->denumire=new char[strlen(Denumire)];
         strcpy(denumire,Denumire);}
         else this->denumire=Denumire;
+        this->pret=Pret;
     }
 
     Produs(const char* Denumire,int Pret)
