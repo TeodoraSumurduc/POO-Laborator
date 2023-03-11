@@ -16,7 +16,7 @@ public:
     }
     Produs(){
         strcpy(denumire,NULL);
-        pret=0;
+        pret=0;}
     Produs(char *Denumire=NULL,int Pret=0){
         if(Denumire!=NULL)
         {this->denumire=new char[strlen(Denumire)];
