@@ -14,28 +14,23 @@ public:
         strcpy(denumire,prod.denumire);
         this->pret=prod.pret;
     }
-    Produs(char *Denumire=NULL,int Pret=0)
-    {
+
+    Produs(char *Denumire=NULL,int Pret=10){
         if(Denumire!=NULL)
-        {
-            this->denumire=new char[strlen(Denumire)+1];
-            strcpy(denumire,Denumire);}
-        this->pret=Pret;
+        {this->denumire=new char[strlen(Denumire)];
+        strcpy(denumire,Denumire);}
+        else this->denumire=Denumire;
     }
-    /*Produs(){
-        ///constructor fara parametrii
-        this->denumire=NULL;
-        this->pret=10;}*/
+
     Produs(const char* Denumire,int Pret)
     {
         ///constructor de initializare
-        if(Denumire!=nullptr)
-        {size_t len=strlen(Denumire);
-            this->denumire=new char[len+1];
-            strcpy(denumire,Denumire);}
+        size_t len=strlen(Denumire);
+        this->denumire=new char[len+1];
+        strcpy(denumire,Denumire);
         this->pret=Pret;
     }
-    ~Produs(){
+~Produs(){
         delete[] denumire;
     }
 
@@ -68,40 +63,38 @@ public:
     bool operator!=(const Produs &rhs) const {
         return !(rhs == *this);
     }
-    friend std::ostream& operator<<(std::ostream &os , Produs p);
+    friend std::ostream& operator<<(std::ostream &os , Produs &p);
     friend std::istream& operator>>(std::istream &is , Produs &p);
-    
+
 };
-ostream& operator<<(std::ostream &os , Produs p)
+ostream& operator<<(std::ostream &os , Produs &p)
 {
     if(!p.denumire){
         os<<"Not initialzed\n";
         return os;
     }
-    os<<"Produs: denumire: "<<p.getDenumire()<<" pret: "<<p.getPret()<<"\n";
+    os<<"Produs: denumire: "<<p.denumire<<" pret: "<<p.pret<<"\n";
     return os;
 }
 istream& operator>>(std::istream &is , Produs &p)
 {
     char buf[100];
-    int x;
     is>>buf;
     p.setDenumire(buf);
-    is>>x;
-    p.setPret(x);
-
+    is>>p.pret;
+    return is;
 }
-
 
 int main() {
 
-   Produs p;
+    Produs p[100];
     int i,n;
+    cout<<"n=";
     cin>>n;
     for(i=1;i<=n;i++)
     {
-        cin>>p;
-        cout<<p;
+        cin>>p[i];
+        cout<<p[i];
     }
 
     return 0;
