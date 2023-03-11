@@ -89,7 +89,6 @@ int main() {
 
     Produs p[100];
     int i,n;
-    cout<<"n=";
     cin>>n;
     for(i=1;i<=n;i++)
     {
