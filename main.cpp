@@ -22,11 +22,11 @@ public:
         else this->denumire=Denumire;
         this->pret=Pret;
     }
-    /*Produs()
+    Produs()
     {
         ///constructor de initializare fara parametrii
-        pret=10;
-    }*/
+        
+    }
 
     Produs(const char* Denumire,int Pret)
     {
