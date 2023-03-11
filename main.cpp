@@ -14,6 +14,14 @@ public:
         strcpy(denumire,prod.denumire);
         this->pret=prod.pret;
     }
+    Produs(char *Denumire=NULL,int Pret=0)
+    {
+        if(Denumire!=NULL)
+        {
+            this->denumire=new char[strlen(Denumire)+1];
+            strcpy(denumire,Denumire);}
+        this->pret=Pret;
+    }
     Produs(){
         ///constructor fara parametrii
         this->denumire=NULL;
