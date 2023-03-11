@@ -70,7 +70,7 @@ public:
     }
     friend std::ostream& operator<<(std::ostream &os , Produs p);
     friend std::istream& operator>>(std::istream &is , Produs &p);
-    friend class Magazin;
+    
 };
 ostream& operator<<(std::ostream &os , Produs p)
 {
