@@ -15,9 +15,11 @@ public:
         this->pret=prod.pret;
     }
 
-    Produs(char *Denumire=NULL,int Pret=10);
+    ///Produs(char *Denumire=NULL,int Pret=10);
     
-
+    Produs(){
+        denumire=nullptr;
+        pret=10;}
     Produs(const char* Denumire,int Pret)
     {
         ///constructor de initializare
@@ -82,14 +84,14 @@ istream& operator>>(std::istream &is , Produs &p)
     p.setPret(x);
     
 }
-Produs::Produs(char *Denumire=NULL,int Pret=10)
+/*Produs::Produs(char *Denumire=NULL,int Pret=10)
 {
         if(Denumire!=NULL)
         {this->denumire=new char[strlen(Denumire)];
         strcpy(denumire,Denumire);}
         else this->denumire=Denumire;
         this->pret=Pret;
-    }
+    }*/
 int main() {
 
     Produs p[100];
