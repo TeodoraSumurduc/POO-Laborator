@@ -87,13 +87,13 @@ istream& operator>>(std::istream &is , Produs &p)
 
 int main() {
 
-   Produs p[100];
+   Produs p;
     int i,n;
     cin>>n;
     for(i=1;i<=n;i++)
     {
-        cin>>p[i];
-        cout<<p[i];
+        cin>>p;
+        cout<<p;
     }
 
     return 0;
