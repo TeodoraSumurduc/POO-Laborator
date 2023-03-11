@@ -17,13 +17,13 @@ public:
     Produs(){
         strcpy(denumire,NULL);
         pret=0;}
-    Produs(char *Denumire=NULL,int Pret=0){
+    /*Produs(char *Denumire=NULL,int Pret=0){
         if(Denumire!=NULL)
         {this->denumire=new char[strlen(Denumire)];
             strcpy(denumire,Denumire);}
         else this->denumire=Denumire;
         this->pret=Pret;
-    }
+    }*/
 
     Produs(const char* Denumire,int Pret)
     {
