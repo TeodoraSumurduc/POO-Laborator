@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-
+class Magazin;
 class Produs{
     char *denumire;
     int pret;
@@ -14,9 +14,6 @@ public:
         strcpy(denumire,prod.denumire);
         this->pret=prod.pret;
     }
-
-    ///Produs(char *Denumire=NULL,int Pret=10);
-    
     Produs(){
         denumire=nullptr;
         pret=10;}
@@ -25,11 +22,11 @@ public:
         ///constructor de initializare
         if(Denumire!=nullptr)
         {size_t len=strlen(Denumire);
-        this->denumire=new char[len+1];
-        strcpy(denumire,Denumire);}
+            this->denumire=new char[len+1];
+            strcpy(denumire,Denumire);}
         this->pret=Pret;
     }
-~Produs(){
+    ~Produs(){
         delete[] denumire;
     }
 
@@ -64,7 +61,7 @@ public:
     }
     friend std::ostream& operator<<(std::ostream &os , Produs p);
     friend std::istream& operator>>(std::istream &is , Produs &p);
-
+    friend class Magazin;
 };
 ostream& operator<<(std::ostream &os , Produs p)
 {
@@ -83,25 +80,22 @@ istream& operator>>(std::istream &is , Produs &p)
     p.setDenumire(buf);
     is>>x;
     p.setPret(x);
-    
+
 }
-/*Produs::Produs(char *Denumire=NULL,int Pret=10)
-{
-        if(Denumire!=NULL)
-        {this->denumire=new char[strlen(Denumire)];
-        strcpy(denumire,Denumire);}
-        else this->denumire=Denumire;
-        this->pret=Pret;
-    }*/
+class Magazin {
+public:
+    Produs p[100];
+};
+
 int main() {
 
-    Produs p[100];
+   Magazin M;
     int i,n;
     cin>>n;
     for(i=1;i<=n;i++)
     {
-        cin>>p[i];
-        cout<<p[i];
+        cin>>M.p[i];
+        cout<<M.p[i];
     }
 
     return 0;
