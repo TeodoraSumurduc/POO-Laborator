@@ -70,7 +70,7 @@ public:
         return !(rhs == *this);
     }
     friend std::ostream& operator<<(std::ostream &os , Produs p);
-    friend std::istream& operator>>(std::istream &is , Produs &p);
+    friend std::istream& operator>>(std::istream &is , Produs p);
 
 };
 ostream& operator<<(std::ostream &os , Produs p)
@@ -82,7 +82,7 @@ ostream& operator<<(std::ostream &os , Produs p)
     os<<"Produs: denumire: "<<p.getDenumire()<<" pret: "<<p.getPret()<<"\n";
     return os;
 }
-istream& operator>>(std::istream &is , Produs &p)
+istream& operator>>(std::istream &is , Produs p)
 {
     char buf[100];
     int x;
