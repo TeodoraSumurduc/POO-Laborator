@@ -1,7 +1,4 @@
 3
-apa
-3
-sare
-5
-paine
-8
+apa 3
+sare 5
+paine 8
