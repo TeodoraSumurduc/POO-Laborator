@@ -15,8 +15,8 @@ public:
         this->pret=prod.pret;
     }
 
-    Produs(char *Denumire=NULL,int Pret=10){
-        if(Denumire!=NULL)
+    Produs(char *Denumire="",int Pret=10){
+        if(Denumire!="")
         {this->denumire=new char[strlen(Denumire)];
         strcpy(denumire,Denumire);}
         else this->denumire=Denumire;
