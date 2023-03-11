@@ -25,8 +25,9 @@ public:
     Produs()
     {
         ///constructor de initializare fara parametrii
-        denumire="unknon";
-        pret=10;
+        this->denumite=new char[100];
+        strcpy(denumire,"unknon");
+        this->pret=10;
     }
 
     Produs(const char* Denumire,int Pret)
