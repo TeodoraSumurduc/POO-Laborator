@@ -15,13 +15,7 @@ public:
         this->pret=prod.pret;
     }
 
-    Produs(char *Denumire=NULL,int Pret=10){
-        if(Denumire!=NULL)
-        {this->denumire=new char[strlen(Denumire)];
-        strcpy(denumire,Denumire);}
-        else this->denumire=Denumire;
-        this->pret=Pret;
-    }
+    Produs(char *Denumire=NULL,int Pret=10);
     
 
     Produs(const char* Denumire,int Pret)
@@ -86,9 +80,16 @@ istream& operator>>(std::istream &is , Produs &p)
     p.setDenumire(buf);
     is>>x;
     p.setPret(x);
-    return is;
+    
 }
-
+Produs::Produs(char *Denumire=NULL,int Pret=10)
+{
+        if(Denumire!=NULL)
+        {this->denumire=new char[strlen(Denumire)];
+        strcpy(denumire,Denumire);}
+        else this->denumire=Denumire;
+        this->pret=Pret;
+    }
 int main() {
 
     Produs p[100];
