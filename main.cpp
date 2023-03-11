@@ -18,7 +18,7 @@ public:
     Produs(char *Denumire=NULL,int Pret=10){
         if(Denumire!=NULL)
         {this->denumire=new char[strlen(Denumire)];
-        strcpy(denumire,Denumire);}
+            strcpy(denumire,Denumire);}
         else this->denumire=Denumire;
         this->pret=Pret;
     }
@@ -31,7 +31,7 @@ public:
         strcpy(denumire,Denumire);
         this->pret=Pret;
     }
-~Produs(){
+    ~Produs(){
         delete[] denumire;
     }
 
@@ -64,25 +64,27 @@ public:
     bool operator!=(const Produs &rhs) const {
         return !(rhs == *this);
     }
-    friend std::ostream& operator<<(std::ostream &os , Produs &p);
+    friend std::ostream& operator<<(std::ostream &os , Produs p);
     friend std::istream& operator>>(std::istream &is , Produs &p);
 
 };
-ostream& operator<<(std::ostream &os , Produs &p)
+ostream& operator<<(std::ostream &os , Produs p)
 {
     if(!p.denumire){
         os<<"Not initialzed\n";
         return os;
     }
-    os<<"Produs: denumire: "<<p.denumire<<" pret: "<<p.pret<<"\n";
+    os<<"Produs: denumire: "<<p.getDenumire()<<" pret: "<<p.getPret()<<"\n";
     return os;
 }
 istream& operator>>(std::istream &is , Produs &p)
 {
     char buf[100];
+    int x;
     is>>buf;
     p.setDenumire(buf);
-    is>>p.pret;
+    is>>x;
+    p.setPret(x);
     return is;
 }
 
