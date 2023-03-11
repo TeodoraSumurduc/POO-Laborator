@@ -23,9 +23,10 @@ public:
     Produs(const char* Denumire,int Pret)
     {
         ///constructor de initializare
-        size_t len=strlen(Denumire);
+        if(Denumire!=nullptr)
+        {size_t len=strlen(Denumire);
         this->denumire=new char[len+1];
-        strcpy(denumire,Denumire);
+        strcpy(denumire,Denumire);}
         this->pret=Pret;
     }
 ~Produs(){
