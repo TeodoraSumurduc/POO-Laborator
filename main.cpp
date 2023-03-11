@@ -22,10 +22,10 @@ public:
             strcpy(denumire,Denumire);}
         this->pret=Pret;
     }
-    Produs(){
+    /*Produs(){
         ///constructor fara parametrii
         this->denumire=NULL;
-        this->pret=10;}
+        this->pret=10;}*/
     Produs(const char* Denumire,int Pret)
     {
         ///constructor de initializare
