@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-class Magazin;
+
 class Produs{
     char *denumire;
     int pret;
@@ -15,8 +15,9 @@ public:
         this->pret=prod.pret;
     }
     Produs(){
-        denumire=nullptr;
-        pret=10;}
+        ///constructor fara parametrii
+        this->denumire=NULL;
+        this->pret=10;}
     Produs(const char* Denumire,int Pret)
     {
         ///constructor de initializare
@@ -82,20 +83,17 @@ istream& operator>>(std::istream &is , Produs &p)
     p.setPret(x);
 
 }
-class Magazin {
-public:
-    Produs p[100];
-};
+
 
 int main() {
 
-   Magazin M;
+   Produs p[100];
     int i,n;
     cin>>n;
     for(i=1;i<=n;i++)
     {
-        cin>>M.p[i];
-        cout<<M.p[i];
+        cin>>p[i];
+        cout<<p[i];
     }
 
     return 0;
