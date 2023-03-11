@@ -14,8 +14,10 @@ public:
         strcpy(denumire,prod.denumire);
         this->pret=prod.pret;
     }
-
-    Produs(char *Denumire=NULL,int Pret=10){
+    Produs(){
+        strcpy(denumire,NULL);
+        pret=0;
+    Produs(char *Denumire=NULL,int Pret=0){
         if(Denumire!=NULL)
         {this->denumire=new char[strlen(Denumire)];
             strcpy(denumire,Denumire);}
