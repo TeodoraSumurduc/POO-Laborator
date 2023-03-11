@@ -80,9 +80,11 @@ ostream& operator<<(std::ostream &os , Produs &p)
 istream& operator>>(std::istream &is , Produs &p)
 {
     char buf[100];
+    int x;
     is>>buf;
     p.setDenumire(buf);
-    is>>p.pret;
+    is>>x;
+    p.setPret(x);
     return is;
 }
 
