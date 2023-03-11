@@ -64,11 +64,11 @@ public:
     bool operator!=(const Produs &rhs) const {
         return !(rhs == *this);
     }
-    friend std::ostream& operator<<(std::ostream &os , Produs p);
+    friend std::ostream& operator<<(std::ostream &os , Produs &p);
     friend std::istream& operator>>(std::istream &is , Produs &p);
 
 };
-ostream& operator<<(std::ostream &os , Produs p)
+ostream& operator<<(std::ostream &os , Produs &p)
 {
     if(!p.denumire){
         os<<"Not initialzed\n";
