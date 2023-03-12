@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <fstream>
 using namespace std;
 ifstream fin("tastatura.txt");
 class Produs{
