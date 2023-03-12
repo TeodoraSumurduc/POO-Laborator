@@ -2,7 +2,8 @@
 #include <cstring>
 #include <fstream>
 using namespace std;
-ifstream fin("tastatura.txt");
+ifstream fin("tstatura.txt");
+class Magazin;
 class Produs{
     char *denumire;
     int pret;
@@ -15,16 +16,16 @@ public:
         strcpy(denumire,prod.denumire);
         this->pret=prod.pret;
     }
-    Produs(){
+    /*Produs(){
         denumire=nullptr;
-        pret=0;}
-    /*Produs(char *Denumire=NULL,int Pret=0){
+        pret=0;}*/
+    Produs(char *Denumire=NULL,int Pret=0){
         if(Denumire!=NULL)
         {this->denumire=new char[strlen(Denumire)];
             strcpy(denumire,Denumire);}
         else this->denumire=Denumire;
         this->pret=Pret;
-    }*/
+    }
 
     Produs(const char* Denumire,int Pret)
     {
@@ -69,7 +70,7 @@ public:
     }
     friend std::ostream& operator<<(std::ostream &os , Produs p);
     friend std::istream& operator>>(std::istream &is , Produs &p);
-
+    friend class Magazin;
 };
 ostream& operator<<(std::ostream &os , Produs p)
 {
@@ -90,17 +91,61 @@ istream& operator>>(std::istream &is , Produs &p)
     p.setPret(x);
     return is;
 }
-
-int main() {
-
+class Magazin{
+    char *denumire;
+public:
     Produs p[100];
+    Magazin(){
+        denumire=nullptr;
+    }
+    Magazin(const char* Denumire){
+        size_t len=strlen(Denumire);
+        this->denumire=new char[len+1];
+        strcpy(denumire,Denumire);
+    }
+    char *getDenumire() const
+    {
+        return denumire;
+    }
+    void setDenumire(const char *Denumire)
+    {
+        size_t len=strlen(Denumire);
+        this->denumire=new char[len+1];
+        strcpy(denumire,Denumire);
+    }
+    friend std::ostream& operator<<(std::ostream &os , Magazin M);
+    friend std::istream& operator>>(std::istream &is , Magazin &M);
+};
+ostream& operator<<(std::ostream &os , Magazin M)
+{
+    if(!M.denumire){
+        os<<"Not initialzed\n";
+        return os;
+    }
+    os<<M.getDenumire();
+    return os;
+}
+istream& operator>>(std::istream &is , Magazin &M)
+{
+    char buf[100];
+    is>>buf;
+    M.setDenumire(buf);
+    return is;
+}
+int main() {
+    char buf[100];
+    Magazin M;
+    cout<<"Numele magazinului este ";
+    fin>>buf;
+    cout<<" si care contine un numar de ";
     int i,n;
-    cout<<"n=";
+
     fin>>n;
+    cout<<"produse . Acestea sunt :";
     for(i=1;i<=n;i++)
     {
-        fin>>p[i];
-        cout<<p[i];
+        fin>>M.p[i];
+        cout<<M.p[i];
     }
 
     return 0;
