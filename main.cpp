@@ -152,13 +152,14 @@ istream& operator>>(std::istream &is , Magazin &M)
 int main() {
     ///char buf[100];
     Magazin M;
-    cout<<"Numele magazinului este ";
+    ///cout<<"Numele magazinului este ";
     fin>>M;
-    cout<<" si care contine un numar de ";
+    cout<<M;
+    ///cout<<" si care contine un numar de ";
     int i,n;
 
     fin>>n;
-    cout<<"produse . Acestea sunt :";
+    ///cout<<"produse . Acestea sunt :";
     for(i=1;i<=n;i++)
     {
         fin>>M.p[i];
