@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstring>
 using namespace std;
-
+ifstream fin("tastatura.txt");
 class Produs{
     char *denumire;
     int pret;
@@ -95,10 +95,10 @@ int main() {
     Produs p[100];
     int i,n;
     cout<<"n=";
-    cin>>n;
+    fin>>n;
     for(i=1;i<=n;i++)
     {
-        cin>>p[i];
+        fin>>p[i];
         cout<<p[i];
     }
 
