@@ -150,10 +150,10 @@ istream& operator>>(std::istream &is , Magazin &M)
     return is;
 }
 int main() {
-    char buf[100];
+    ///char buf[100];
     Magazin M;
     cout<<"Numele magazinului este ";
-    fin>>buf;
+    fin>>M;
     cout<<" si care contine un numar de ";
     int i,n;
 
