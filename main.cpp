@@ -16,16 +16,16 @@ public:
         strcpy(denumire,prod.denumire);
         this->pret=prod.pret;
     }
-    /*Produs(){
+    Produs(){
         denumire=nullptr;
-        pret=0;}*/
-    Produs(char *Denumire=NULL,int Pret=0){
+        pret=0;}
+    /*Produs(char *Denumire=NULL,int Pret=0){
         if(Denumire!=NULL)
         {this->denumire=new char[strlen(Denumire)];
             strcpy(denumire,Denumire);}
         else this->denumire=Denumire;
         this->pret=Pret;
-    }
+    }*/
 
     Produs(const char* Denumire,int Pret)
     {
@@ -102,6 +102,23 @@ public:
         size_t len=strlen(Denumire);
         this->denumire=new char[len+1];
         strcpy(denumire,Denumire);
+    }
+    Magazin(const Magazin &mag)
+    {
+        ///constructor de copiere
+        size_t len=strlen(mag.denumire);
+        this->denumire=new char[len+1];
+        strcpy(denumire,mag.denumire);
+
+    }
+    ~Magazin(){
+        delete[] denumire;
+    }
+    Magazin& operator=(const Magazin &rhs){
+        ///operatorul  de atribuire
+        if (this!=&rhs)
+            setDenumire(rhs.denumire);
+        return *this;
     }
     char *getDenumire() const
     {
