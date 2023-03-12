@@ -98,11 +98,11 @@ public:
     Magazin(){
         denumire=nullptr;
     }
-    Magazin(const char* Denumire){
+    /*Magazin(const char* Denumire){
         size_t len=strlen(Denumire);
         this->denumire=new char[len+1];
         strcpy(denumire,Denumire);
-    }
+    }*/
     Magazin(const Magazin &mag)
     {
         ///constructor de copiere
