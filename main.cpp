@@ -92,11 +92,11 @@ istream& operator>>(std::istream &is , Produs &p)
     return is;
 }
 class Magazin{
-    char *denumire;
+    char *nume;
 public:
     Produs p[100];
     Magazin(){
-        denumire=nullptr;
+        nume=nullptr;
     }
     /*Magazin(const char* Denumire){
         size_t len=strlen(Denumire);
@@ -106,47 +106,47 @@ public:
     Magazin(const Magazin &mag)
     {
         ///constructor de copiere
-        size_t len=strlen(mag.denumire);
-        this->denumire=new char[len+1];
-        strcpy(denumire,mag.denumire);
+        size_t len=strlen(mag.nume);
+        this->nume=new char[len+1];
+        strcpy(nume,mag.nume);
 
     }
     ~Magazin(){
-        delete[] denumire;
+        delete[] nume;
     }
     Magazin& operator=(const Magazin &rhs){
         ///operatorul  de atribuire
         if (this!=&rhs)
-            setDenumire(rhs.denumire);
+            setNume(rhs.nume);
         return *this;
     }
-    char *getDenumire() const
+    char *getNume() const
     {
-        return denumire;
+        return nume;
     }
-    void setDenumire(const char *Denumire)
+    void setNume(const char *Nume)
     {
-        size_t len=strlen(Denumire);
-        this->denumire=new char[len+1];
-        strcpy(denumire,Denumire);
+        size_t len=strlen(Nume);
+        this->nume=new char[len+1];
+        strcpy(nume,Nume);
     }
     friend std::ostream& operator<<(std::ostream &os , Magazin M);
     friend std::istream& operator>>(std::istream &is , Magazin &M);
 };
 ostream& operator<<(std::ostream &os , Magazin M)
 {
-    if(!M.denumire){
+    if(!M.nume){
         os<<"Not initialzed\n";
         return os;
     }
-    os<<M.getDenumire();
+    os<<M.getNume();
     return os;
 }
 istream& operator>>(std::istream &is , Magazin &M)
 {
     char buf[100];
     is>>buf;
-    M.setDenumire(buf);
+    M.setNume(buf);
     return is;
 }
 int main() {
