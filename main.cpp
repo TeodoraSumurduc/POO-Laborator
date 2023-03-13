@@ -74,7 +74,7 @@ public:
 };
 ostream& operator<<(std::ostream &os , Produs p)
 {
-    if(!p.denumire){
+    if(!p.getDenumire()){
         os<<"Not initialzed\n";
         return os;
     }
@@ -135,7 +135,7 @@ public:
 };
     ostream& operator<<(std::ostream &os , Magazin M)
 {
-    if(!M.nume){
+    if(!M.getNume()){
         os<<"Not initialzed\n";
         return os;
     }
