@@ -45,6 +45,7 @@ public:
     }
     void setDenumire(const char *Denumire)
     {
+        delete[] this->denumire;
         size_t len=strlen(Denumire);
         this->denumire=new char[len+1];
         strcpy(denumire,Denumire);
@@ -126,6 +127,7 @@ public:
     }
     void setNume(const char *Nume)
     {
+        delete[] this->nume;
         size_t len=strlen(Nume);
         this->nume=new char[len+1];
         strcpy(nume,Nume);
