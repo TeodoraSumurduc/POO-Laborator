@@ -2,6 +2,8 @@ Best
 Antipa 
 6
 3
-apa 3 3
+apa 3 2
+da
+da
 sare 5 32
 paine 8 40
