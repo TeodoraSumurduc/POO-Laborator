@@ -130,10 +130,9 @@ public:
         this->nume=new char[len+1];
         strcpy(nume,Nume);
     }
-    friend std::ostream& operator<<(std::ostream &os , Magazin M);
-    friend std::istream& operator>>(std::istream &is , Magazin &M);
-};
-ostream& operator<<(std::ostream &os , Magazin M)
+    ///friend std::ostream& operator<<(std::ostream &os , Magazin M);
+    ///friend std::istream& operator>>(std::istream &is , Magazin &M);
+    ostream& operator<<(std::ostream &os , Magazin M)
 {
     if(!M.nume){
         os<<"Not initialzed\n";
@@ -149,6 +148,8 @@ istream& operator>>(std::istream &is , Magazin &M)
     M.setNume(buf);
     return is;
 }
+};
+
 int main() {
     ///char buf[100];
     Magazin M;
