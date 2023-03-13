@@ -68,11 +68,11 @@ public:
     bool operator!=(const Produs &rhs) const {
         return !(rhs == *this);
     }
-    friend std::ostream& operator<<(std::ostream &os , Produs &p);
+    friend std::ostream& operator<<(std::ostream &os ,const Produs &p);
     friend std::istream& operator>>(std::istream &is , Produs &p);
     friend class Magazin;
 };
-ostream& operator<<(std::ostream &os , Produs &p)
+ostream& operator<<(std::ostream &os , const Produs &p)
 {
     if(!p.getDenumire()){
         os<<"Not initialzed\n";
@@ -130,10 +130,10 @@ public:
         this->nume=new char[len+1];
         strcpy(nume,Nume);
     }
-    friend std::ostream& operator<<(std::ostream &os , Magazin &M);
+    friend std::ostream& operator<<(std::ostream &os ,const Magazin &M);
     friend std::istream& operator>>(std::istream &is , Magazin &M);
 };
-    ostream& operator<<(std::ostream &os , Magazin &M)
+    ostream& operator<<(std::ostream &os ,const Magazin &M)
 {
     if(!M.getNume()){
         os<<"Not initialzed\n";
