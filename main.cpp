@@ -2,7 +2,7 @@
 #include <cstring>
 #include <fstream>
 using namespace std;
-ifstream fin("tstatura.txt");
+ifstream fin("tastatura.txt");
 class Magazin;
 class Produs{
     char *denumire;
