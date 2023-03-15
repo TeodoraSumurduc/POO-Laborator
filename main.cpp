@@ -139,6 +139,7 @@ public:
         lenp+=nr;
         delete[] p;
         p=temp;
+        delete[] temp;
     }
 
     Magazin(){
