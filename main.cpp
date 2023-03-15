@@ -102,8 +102,45 @@ istream& operator>>(std::istream &is , Produs &p)
 class Magazin{
     char *nume,*strada;
     int nrStrada;
+    Produs *p=new Produs[0];
+    int lenp=0;
 public:
-    Produs p[100];
+    void adauga_produs()
+    {
+        cout<<"Cate produse vreti sa introduceti ?";
+        int nr,i; fin>>nr; cout<<nr;
+        char buf[100],r[100];
+        Produs *temp=new Produs[lenp+nr];
+        for(i=0;i<lenp+nr;i++)
+        {
+            fin>>temp[i];
+            if(temp[i].getNrBucati()>temp[i].getStoc())
+            {
+                cout<<"Numarul dumneavoastra de bucati este mai mare decat stocul produsului.";
+                cout<<"\nVreti sa mai cumparati produsul ?";
+                fin>>buf;
+                cout<<buf;
+                if(strcmp(buf,"da")==0)
+                {
+                    cout<<temp[i]<<"\nPentru ca nu avem stoc suficient, veti achizitiona "<<temp[i].getStoc()<<" bucati.";
+                    cout<<"Sunteti de acord ?";
+                    fin>>r;
+                    cout<<r;
+                    if(strcmp(r,"da")==0)
+                        cout<<"\nProdusul dumneavoastra a fost adaugat in cos.";
+                }
+
+            }
+            else{
+                cout<<"Produsul dumneavoastra se afla in stoc.Acesta a fost adaugat in cos.\n";
+                cout<<temp[i];
+            }
+        }
+        lenp+=nr;
+        delete[] p;
+        p=temp;
+    }
+
     Magazin(){
         nume=nullptr;
         strada=nullptr;
@@ -193,34 +230,7 @@ istream& operator>>(std::istream &is , Magazin &M)
 int main() {
     Magazin M;
     fin>>M;
-    cout<<"Lista mea de cumparaturi contine  ";
-    int i,n;
-    char buf[100],r[100];
-    fin>>n;
-    cout<<"produse . Acestea sunt : ";
-    for(i=1;i<=n;i++)
-    {
-        fin>>M.p[i];
-        if(M.p[i].getNrBucati()>M.p[i].getStoc())
-        {
-            cout<<"Numarul dumneavoastra de bucati este mai mare decat stocul produsului.";
-            cout<<"\nVreti sa mai cumparati produsul ?";
-            fin>>buf;
-            if(strcmp(buf,"da")==0)
-            {
-                cout<<M.p[i]<<"\nPentru ca nu avem stoc suficient, veti achizitiona "<<M.p[i].getStoc()<<" bucati.";
-                cout<<"Sunteti de acord ?";
-                fin>>r;
-                if(strcmp(r,"da")==0)
-                    cout<<"Produsul dumneavoastra a fost adaugat in cos.";
-            }
-
-        }
-        else{
-            cout<<"Produsul dumneavoastra se afla in stoc.Acesta a fost adaugat in cos.\n";
-            cout<<M.p[i];
-        }
-    }
+    M.adauga_produs();
     cout<<"\nMultumim ca ati cumparat de la noi !";
 
     return 0;
