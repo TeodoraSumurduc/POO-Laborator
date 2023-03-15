@@ -231,7 +231,7 @@ int main() {
     Magazin M;
     fin>>M;
     M.adauga_produs();
-    cout<<"\nMultumim ca ati cumparat de la noi !";
+    cout<<"Multumim ca ati cumparat de la noi !";
 
     return 0;
 }
