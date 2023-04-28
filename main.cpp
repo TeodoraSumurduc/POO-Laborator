@@ -1,238 +1,156 @@
 #include <iostream>
-#include <cstring>
-#include <fstream>
+#include <string>
+#include "Produs.h"
+#include "Lactate.h"
+#include "bacanie.h"
+#include "Legume.h"
+#include "Fructe.h"
+#include "ProductType.h"
+#include "ListaDepozit.h"
+#include "DepasireCantitateDorita.h"
+#include "NiciunProdus.h"
+#include "fstream"
+
 using namespace std;
-ifstream fin("tastatura.txt");
-class Magazin;
-class Produs{
-    char *denumire;
-    int nrBucati,stoc;
-public:
-    Produs(const Produs &prod)
+std::ifstream file(R"(C:\\Users\\TEODORA\\Desktop\\Anul I sem II\\POO\\Laborator\\Tema 2\\tastatura.txt)");
+void meniu(){
+    std::cout<<"Vreti sa introduceti in depozit produse de bacanie ?\nDaca raspunsul este da , apasati tasta 1:";
+    int afirmare;
+    file>>afirmare;
+    std::cout<<afirmare;
+    if(afirmare==1)
     {
-        ///constructor de copiere
-        size_t len=strlen(prod.denumire);
-        this->denumire=new char[len+1];
-        strcpy(denumire,prod.denumire);
-        this->nrBucati=prod.nrBucati;
-        this->stoc=prod.stoc;
-    }
-    Produs(){
-        denumire=nullptr;
-        nrBucati=0;
-        stoc=0;
-    }
-    Produs(const char* Denumire,int NrBucati,int Stoc)
-    {
-        ///constructor de initializare
-        size_t len=strlen(Denumire);
-        this->denumire=new char[len+1];
-        strcpy(denumire,Denumire);
-        this->nrBucati=NrBucati;
-        this->stoc=Stoc;
-    }
-    ~Produs(){
-        delete[] denumire;
+        std::cout<<"Cate produse de bacanie vreti sa introduceti ?";
+        int n1,nrBuc;
+        std::string nume,animal;
+        file>>n1;
 
-    }
-
-    char *getDenumire() const
-    {
-        return denumire;
-    }
-    void setDenumire(const char *Denumire)
-    {
-        delete[] this->denumire;
-        size_t len=strlen(Denumire);
-        this->denumire=new char[len+1];
-        strcpy(denumire,Denumire);
-    }
-    int getNrBucati() const{
-        return nrBucati;
-    }
-    void setNrBucati(int NrBucati){
-        nrBucati=NrBucati;
-    }
-    int getStoc() const{
-        return stoc;
-    }
-    void setStoc(int Stoc){
-        stoc=Stoc;
-    }
-    Produs& operator=(const Produs &rhs){
-        ///operatorul  de atribuire
-        if (this!=&rhs)
-            setDenumire(rhs.denumire);
-        this->nrBucati=rhs.nrBucati;
-        this->stoc=rhs.stoc;
-        return *this;
-    }
-
-    friend std::ostream& operator<<(std::ostream &os ,const Produs &p);
-    friend std::istream& operator>>(std::istream &is , Produs &p);
-    friend class Magazin;
-};
-bool operator==(const  Produs &lhs,const  Produs &rhs) {
-    return strcmp(lhs.getDenumire(),rhs.getDenumire()) == 0 && lhs.getNrBucati()==rhs.getNrBucati() && lhs.getStoc()==rhs.getStoc();
-}
-bool operator!=(const  Produs &lhs,const  Produs &rhs) {
-    return strcmp(lhs.getDenumire(),rhs.getDenumire()) != 0 || lhs.getNrBucati()!=rhs.getNrBucati() || lhs.getStoc()!=rhs.getStoc();
-}
-ostream& operator<<(std::ostream &os ,const Produs &p)
-{
-    if(!p.getDenumire()){
-        os<<"Not initialzed\n";
-        return os;
-    }
-    os<<"Produs: denumire: "<<p.getDenumire()<<"\nNumarul de bucati: "<<p.getNrBucati()<<"\nNumarul de produse ramase in stoc:"<<p.getStoc();
-    return os;
-}
-istream& operator>>(std::istream &is , Produs &p)
-{
-    char buf[100];
-    int x,y;
-    is>>buf;
-    p.setDenumire(buf);
-    is>>x;
-    p.setNrBucati(x);
-    is>>y;
-    p.setStoc(y);
-    return is;
-}
-class Magazin{
-    char *nume,*strada;
-    int nrStrada;
-    Produs *p=new Produs[0];
-    int lenp=0;
-public:
-    void adauga_produs()
-    {
-        cout<<"Cate produse vreti sa introduceti ?";
-        int nr,i; fin>>nr; cout<<nr;
-        char buf[100],r[100];
-        Produs *temp=new Produs[lenp+nr];
-        for(i=0;i<lenp+nr;i++)
+        for(int i=1;i<=n1;i++)
         {
-            fin>>temp[i];
-            if(temp[i].getNrBucati()>temp[i].getStoc())
-            {
-                cout<<"Numarul dumneavoastra de bucati este mai mare decat stocul produsului.";
-                cout<<"\nVreti sa mai cumparati produsul ?";
-                fin>>buf;
-                cout<<buf;
-                if(strcmp(buf,"da")==0)
-                {
-                    cout<<temp[i]<<"\nPentru ca nu avem stoc suficient, veti achizitiona "<<temp[i].getStoc()<<" bucati.";
-                    cout<<"Sunteti de acord ?";
-                    fin>>r;
-                    cout<<r;
-                    if(strcmp(r,"da")==0)
-                        cout<<"\nProdusul dumneavoastra a fost adaugat in cos.";
-                }
+            std::cout<<"Introduceti denumirea : ";
+            file>>nume;
+            std::cout<<"Introduceti numarul de bucati : ";
+            file>>nrBuc;
+            std::cout<<"Introduceti animalul :";
+            file>>animal;
+            try{
+                Produs *p=new Bacanie(nume, nrBuc,animal);
 
+                Bacanie *b=dynamic_cast<Bacanie*>(p);
+                auto x=std::make_shared<Bacanie>(b->getNume(),b->getNrBucati(),b->getAnimal());
+
+                ListaDepozit::AddProdus(x);}
+            catch(const DepasireCantitateDorita &d){
+                std::cout<<d.what()<<"\n";
             }
-            else{
-                cout<<"Produsul dumneavoastra se afla in stoc.Acesta a fost adaugat in cos.\n";
-                cout<<temp[i];
+            catch(const NiciunProdus &n){
+                std::cout<<n.what()<<"\n";
             }
         }
-        lenp+=nr;
-        delete[] p;
-        p=temp;
-        delete[] temp;
     }
-
-    Magazin(){
-        nume=nullptr;
-        strada=nullptr;
-        nrStrada=0;
-    }
-    Magazin(const Magazin &mag)
+    std::cout<<"Vreti sa introduceti in depozit produse lactate?\nDaca raspunsul este da , apasati tasta 1:";
+    file>>afirmare;
+    if(afirmare==1)
     {
-        ///constructor de copiere
-        size_t len1=strlen(mag.nume);
-        this->nume=new char[len1+1];
-        strcpy(nume,mag.nume);
-        size_t len2=strlen(mag.strada);
-        this->strada=new char[len2+1];
-        strcpy(strada,mag.strada);
-        this->nrStrada=mag.nrStrada;
-    }
-    ~Magazin(){
-        delete[] nume;
-        delete[] strada;
+        std::cout<<"Cate produse lactate vreti sa introduceti ?";
+        int n2,nrBuc;
+        float procent;
+        std::string nume;
+        file>>n2;
 
-    }
-    Magazin& operator=(const Magazin &rhs){
-        ///operatorul  de atribuire
-        if (this!=&rhs)
+        for(int i=1;i<=n2;i++)
         {
-            setNume(rhs.nume);
-            setStrada(rhs.strada);
+            std::cout<<"Introduceti denumirea : ";
+            file>>nume;
+            std::cout<<"Introduceti numarul de bucati : ";
+            file>>nrBuc;
+            std::cout<<"Procentul de grasime :";
+            file>>procent;
+            try{
+                Produs *p=new Lactate(nume, nrBuc,procent);
+
+                Lactate *b=dynamic_cast<Lactate*>(p);
+                auto x=std::make_shared<Lactate>(b->getNume(),b->getNrBucati(),b->getProcentGrasime());
+
+                ListaDepozit::AddProdus(x);}
+            catch(const DepasireCantitateDorita &d){
+                std::cout<<d.what()<<"\n";
+            }
+            catch(const NiciunProdus &n){
+                std::cout<<n.what()<<"\n";
+            }
         }
-        this->nrStrada=rhs.nrStrada;
-        return *this;
     }
-    char *getNume() const
+    std::cout<<"Vreti sa introduceti in depozit produse legume?\nDaca raspunsul este da , apasati tasta 1:";
+    file>>afirmare;
+    if(afirmare==1)
     {
-        return nume;
+        std::cout<<"Cate produse legume vreti sa introduceti ?";
+        int n3,nrBuc;
+        std::string nume,origine;
+        file>>n3;
+
+        for(int i=1;i<=n3;i++)
+        {
+            std::cout<<"Introduceti denumirea : ";
+            file>>nume;
+            std::cout<<"Introduceti numarul de bucati : ";
+            file>>nrBuc;
+            std::cout<<"Introduceti originea:";
+            file>>origine;
+            try{
+                Produs *p=new Legume(nume, nrBuc,origine);
+
+                Legume *b=dynamic_cast<Legume*>(p);
+                auto x=std::make_shared<Legume>(b->getNume(),b->getNrBucati(),b->getOrigine());
+
+                ListaDepozit::AddProdus(x);}
+            catch(const DepasireCantitateDorita &d){
+                std::cout<<d.what()<<"\n";
+            }
+            catch(const NiciunProdus &n){
+                std::cout<<n.what()<<"\n";
+            }
+        }
     }
-    void setNume(const char *Nume)
+    std::cout<<"Vreti sa introduceti in depozit produse fructe?\nDaca raspunsul este da , apasati tasta 1:";
+    file>>afirmare;
+    if(afirmare==1)
     {
-        delete[] this->nume;
-        size_t len=strlen(Nume);
-        this->nume=new char[len+1];
-        strcpy(nume,Nume);
+        std::cout<<"Cate produse fructe vreti sa introduceti ?";
+        int n4,nrBuc;
+        std::string nume,origine;
+        file>>n4;
+
+        for(int i=1;i<=n4;i++)
+        {
+            std::cout<<"Introduceti denumirea : ";
+            file>>nume;
+            std::cout<<"Introduceti numarul de bucati : ";
+            file>>nrBuc;
+            std::cout<<"Introduceti originea:";
+            file>>origine;
+            try{
+                Produs *p=new Fructe(nume, nrBuc,origine);
+
+                Fructe *b=dynamic_cast<Fructe*>(p);
+                auto x=std::make_shared<Fructe>(b->getNume(),b->getNrBucati(),b->getOrigine());
+
+                ListaDepozit::AddProdus(x);}
+            catch(const DepasireCantitateDorita &d){
+                std::cout<<d.what()<<"\n";
+            }
+            catch(const NiciunProdus &n) {
+                std::cout << n.what() << "\n";
+            }
+        }
     }
-    char *getStrada() const
-    {
-        return strada;
-    }
-    void setStrada(const char *Strada)
-    {
-        delete[] this->strada;
-        size_t len=strlen(Strada);
-        this->strada=new char[len+1];
-        strcpy(strada,Strada);
-    }
-    int getNrStrada() const{
-        return nrStrada;
-    }
-    void setNrStrada(int NrStrada){
-        nrStrada=NrStrada;
-    }
-    friend std::ostream& operator<<(std::ostream &os ,const Magazin &M);
-    friend std::istream& operator>>(std::istream &is , Magazin &M);
-};
-ostream& operator<<(std::ostream &os ,const Magazin &M)
-{
-    if(!M.getNume() && !M.getStrada()){
-        os<<"Not initialzed\n";
-        return os;
-    }
-    os<<"Numele magazinului este: "<<M.getNume()<<"\n Se afla pe strada: "<<M.getStrada()<<" numarul "<<M.getNrStrada();
-    return os;
+    ListaDepozit::PrintProduse();
 }
-istream& operator>>(std::istream &is , Magazin &M)
-{
-    char buf[100],buf1[100];
-    cout<<"Numele magazinului este ";
-    is>>buf;
-    M.setNume(buf);
-    cout<<"Se afla pe strada: ";
-    is>>buf1;
-    M.setStrada(buf1);
-    cout<<"Numarul: ";
-    int x;
-    is>>x;
-    M.setNrStrada(x);
-    return is;
-}
+
 int main() {
-    Magazin M;
-    fin>>M;
-    M.adauga_produs();
-    cout<<"Multumim ca ati cumparat de la noi !";
+    meniu();
 
     return 0;
 }
+
