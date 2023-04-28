@@ -38,7 +38,7 @@ void meniu(){
 
                 Bacanie *b=dynamic_cast<Bacanie*>(p);
                 auto x=std::make_shared<Bacanie>(b->getNume(),b->getNrBucati(),b->getAnimal());
-
+                cout<<x;
                 ListaDepozit::AddProdus(x);}
             catch(const DepasireCantitateDorita &d){
                 std::cout<<d.what()<<"\n";
@@ -71,7 +71,7 @@ void meniu(){
 
                 Lactate *b=dynamic_cast<Lactate*>(p);
                 auto x=std::make_shared<Lactate>(b->getNume(),b->getNrBucati(),b->getProcentGrasime());
-
+                cout<<x;
                 ListaDepozit::AddProdus(x);}
             catch(const DepasireCantitateDorita &d){
                 std::cout<<d.what()<<"\n";
@@ -103,7 +103,7 @@ void meniu(){
 
                 Legume *b=dynamic_cast<Legume*>(p);
                 auto x=std::make_shared<Legume>(b->getNume(),b->getNrBucati(),b->getOrigine());
-
+                cout<<x;
                 ListaDepozit::AddProdus(x);}
             catch(const DepasireCantitateDorita &d){
                 std::cout<<d.what()<<"\n";
@@ -135,7 +135,7 @@ void meniu(){
 
                 Fructe *b=dynamic_cast<Fructe*>(p);
                 auto x=std::make_shared<Fructe>(b->getNume(),b->getNrBucati(),b->getOrigine());
-
+                cout<<x;
                 ListaDepozit::AddProdus(x);}
             catch(const DepasireCantitateDorita &d){
                 std::cout<<d.what()<<"\n";
